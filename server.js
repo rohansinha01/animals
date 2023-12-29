@@ -23,9 +23,9 @@ app.use(express.urlencoded({extended: true}))
 
 // Index
 app.get("/animals", async (req,res) => {
-    let allAnimals = await Animal.find({})
+    let animals = await Animal.find({})
 
-    res.send(allAnimals)
+    res.render("index.ejs",{animals: animals.reverse()})
 })
 
 // New
@@ -51,13 +51,14 @@ app.put("/animals/:id", async (req, res) => {
 })
 //CREATE - POST
 app.post("/animals", async (req, res) => {
-   try{ if (req.body.completed === "on") {
-        req.body.completed = true
+   try{ if (req.body.extinct === "on") {
+        req.body.extinct = true
     } else {
-            req.body.completed = false
+            req.body.extinct = false
         }
     let newAnimal = await Animal.create(req.body)
-    res.send(newAnimal)
+    res.redirect("/animals")
+
 } catch (err) {
     res.send(err)
 }

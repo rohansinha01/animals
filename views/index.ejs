@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animals</title>
-</head>
+    <%- include("./partials/head.ejs") %>
 <body>
+    <%- include("./partials/nav.ejs") %>
     <h1>Check out these Animals!</h1>
-
+    <% for (let a = 0; a < animals.length; ++a) { %>
+        <div>
+            <a href="/animals/<%= animals[a]._id %>">
+                <%= animals[a].species %>
+            </a>
+            <p>click animal to see more</p>
+        </div>
+   <% } %>
 </body>
 </html>

@@ -2,12 +2,11 @@ const mongoose = require("mongoose")
 
 const { Schema, model } = mongoose;
 
-const animalSchema = new Schema ({
-    species: String,
+const animalSchema = new mongoose.Schema ({
+    species: { type: String, required: true},
+    location: { type: String, required: true},
+    lifeExpectancy: { type: Number, required: true},
     extinct: Boolean,
-    location: String,
-    lifeExpectancy: Number
-
 })
 
 const Animal = model("Animal", animalSchema)

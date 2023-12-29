@@ -3,6 +3,7 @@
 <%- include("./partials/head.ejs") %>
 <body>
     <h1>New Animal Form</h1>
+    <%- include("./partials/nav.ejs") %>
     <form action="/animals" method="post">
         species: <input type="text" name="species"><br>
         extinct: <input type="checkbox" name="extinct"><br>
