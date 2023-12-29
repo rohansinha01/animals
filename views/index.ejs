@@ -4,12 +4,13 @@
 <body>
     <%- include("./partials/nav.ejs") %>
     <h1>Check out these Animals!</h1>
+    <p>click animal to see more</p>
     <% for (let a = 0; a < animals.length; ++a) { %>
         <div>
             <a href="/animals/<%= animals[a]._id %>">
                 <%= animals[a].species %>
             </a>
-            <p>click animal to see more</p>
+            
             <form action="/animals/<%= animals[a]._id%>/?_method=DELETE" method="post">
                 <input type="submit" value="Remove Animal">
             </form>
