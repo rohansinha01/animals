@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./partials/head.ejs") %>
+<body>
+    <% console.log(animal) %>
+    <%- include("./partials/nav.ejs") %>
+    <h1><%= animal.species %></h1>
+    <h1><%= animal.extinct ? "No more" : "Still around!"%></h1>
+    <h1><%= animal.location %></h1>
+    <h1><%= animal.lifeExpectancy %></h1>
+</body>
+</html>

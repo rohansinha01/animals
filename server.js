@@ -66,12 +66,10 @@ app.post("/animals", async (req, res) => {
 
 //Show route
 app.get ("/animals/:id", async(req, res) => {
-   try{ let foundAnimal = await Animal.findById(req.params.id)
-    res.send(foundAnimal)
-   } catch (error) {
-    res.send(error)
-   }
-})
+let animal = await Animal.findById(req.params.id)
+    res.render("show.ejs", {animal})
+   } 
+)
 
 
 app.listen(PORT, () => {
