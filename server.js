@@ -27,6 +27,12 @@ app.get("/animals", async (req,res) => {
     res.send(allAnimals)
 })
 
+// Delete
+app.delete("/animals/:id", async (req, res) => {
+    let deletedAnimal = await Animal.findByIdAndDelete(req.params.id)
+    res.send(`animal went upstate to a farm`)
+}) 
+
 // Update - PUT
 app.put("/animals/:id", async (req, res) => {
     const id = req.params.id
