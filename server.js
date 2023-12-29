@@ -1,4 +1,5 @@
 require("dotenv").config()
+require("./config/db")
 const express = require("express")
 const morgan = require("morgan")
 const methodOverride = require("method-override")
@@ -9,13 +10,13 @@ const PORT = process.env.PORT || 3013;
 
 const Animal = require("./models/animals.js")
 
-const mongoose = require("mongoose")
-const db = mongoose.connection;
-mongoose.connect(process.env.DATABASE_URL)
+// const mongoose = require("mongoose")
+// const db = mongoose.connection;
+// mongoose.connect(process.env.DATABASE_URL)
 
-db.on("error", (err) => console.log(err.message + `something went wrong with mongo`))
-db.on("connected", () => console.log(`mongo connected`))
-db.on("closed", () => console.log("mongo disconnected"))
+// db.on("error", (err) => console.log(err.message + `something went wrong with mongo`))
+// db.on("connected", () => console.log(`mongo connected`))
+// db.on("closed", () => console.log("mongo disconnected"))
 
 app.use(morgan("dev"))
 app.use(express.urlencoded({extended: true}))
@@ -25,6 +26,11 @@ app.get("/animals", async (req,res) => {
     let allAnimals = await Animal.find({})
 
     res.send(allAnimals)
+})
+
+// New
+app.get("/animals/new", (req, res) => {
+    res.send("new animal")
 })
 
 // Delete
@@ -45,14 +51,25 @@ app.put("/animals/:id", async (req, res) => {
 })
 //CREATE - POST
 app.post("/animals", async (req, res) => {
+   try{ if (req.body.completed === "on") {
+        req.body.completed = true
+    } else {
+            req.body.completed = false
+        }
     let newAnimal = await Animal.create(req.body)
     res.send(newAnimal)
+} catch (err) {
+    res.send(err)
+}
     })
 
 //Show route
 app.get ("/animals/:id", async(req, res) => {
-    let foundAnimal = await Animal.findById(req.params.id)
+   try{ let foundAnimal = await Animal.findById(req.params.id)
     res.send(foundAnimal)
+   } catch (error) {
+    res.send(error)
+   }
 })
 
 
