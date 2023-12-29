@@ -2,9 +2,9 @@
 <html lang="en">
     <%- include("./partials/head.ejs") %>
 <body>
-    <% console.log(animal) %>
     <%- include("./partials/nav.ejs") %>
     <h1><%= animal.species %></h1>
+    <a href="/animals/edit/<%=animal._id%>">Edit <%= animal.species%></a>
     <h1><%= animal.extinct ? "No more" : "Still around!"%></h1>
     <h1><%= animal.location %></h1>
     <h1><%= animal.lifeExpectancy %></h1>

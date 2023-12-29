@@ -20,6 +20,7 @@ const Animal = require("./models/animals.js")
 
 app.use(morgan("dev"))
 app.use(express.urlencoded({extended: true}))
+app.use(methodOverride("_method"))
 
 // Index
 app.get("/animals", async (req,res) => {
@@ -35,19 +36,30 @@ app.get("/animals/new", (req, res) => {
 
 // Delete
 app.delete("/animals/:id", async (req, res) => {
+    try {
     let deletedAnimal = await Animal.findByIdAndDelete(req.params.id)
-    res.send(`animal went upstate to a farm`)
+    res.redirect("/animals") 
+} 
+    catch (error) {
+        res.status(500).send("something went wrong when deleting")
+    }
 }) 
 
 // Update - PUT
 app.put("/animals/:id", async (req, res) => {
-    const id = req.params.id
-    const newAnimal = req.body
-    let updatedAnimal = await Animal.findByIdAndUpdate(
-        id, 
-        newAnimal, 
-        {new: true })
-    res.send(updatedAnimal)
+if (req.body.extinct === "on") {
+    req.body.extinct = true 
+} else{
+    req.body.extinct = false
+}
+let updatedAnimal = await Animal.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    {
+        new: true
+    }
+)
+    res.redirect(`/animals/${updatedAnimal._id}`)
 })
 //CREATE - POST
 app.post("/animals", async (req, res) => {
@@ -63,6 +75,19 @@ app.post("/animals", async (req, res) => {
     res.send(err)
 }
     })
+
+//Edit route
+app.get("/animals/edit/:id", async (req, res) => {
+    try {
+        let foundAnimal = await Animal.findById(req.params.id) 
+        res.render("edit.ejs", {
+            animal: foundAnimal
+        })
+        
+    } catch (error){
+        res.send("hello")
+    }
+})
 
 //Show route
 app.get ("/animals/:id", async(req, res) => {
