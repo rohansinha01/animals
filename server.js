@@ -30,7 +30,7 @@ app.get("/animals", async (req,res) => {
 
 // New
 app.get("/animals/new", (req, res) => {
-    res.send("new animal")
+    res.render("new.ejs")
 })
 
 // Delete
