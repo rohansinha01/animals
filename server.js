@@ -31,7 +31,10 @@ app.get("/animals", async (req,res) => {
 app.put("/animals/:id", async (req, res) => {
     const id = req.params.id
     const newAnimal = req.body
-    let updatedAnimal = await Animal.findByIdAndUpdate(id, newAnimal)
+    let updatedAnimal = await Animal.findByIdAndUpdate(
+        id, 
+        newAnimal, 
+        {new: true })
     res.send(updatedAnimal)
 })
 //CREATE - POST
