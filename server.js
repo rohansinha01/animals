@@ -21,13 +21,16 @@ app.use(morgan("dev"))
 app.use(express.urlencoded({extended: true}))
 
 
-app.get("/", (req,res) => {
-    res.render("index.ejs")
+app.get("/animals", async (req,res) => {
+    let allAnimals = await Animal.find({})
+
+    res.send(allAnimals)
 })
 //CREATE - POST
-app.post("/animals", (req, res) => {
-    res.send(req.body)
-})
+app.post("/animals", async (req, res) => {
+    let newAnimal = await Animal.create(req.body)
+    res.send(newAnimal)
+    })
 
 
 app.listen(PORT, () => {
