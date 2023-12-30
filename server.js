@@ -31,6 +31,7 @@ app.use((req, res, next) => {
 app.use(morgan("dev"))
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride("_method"))
+app.use("/public", express.static("public"))
 
 app.use("/animals", animalRouter)
 

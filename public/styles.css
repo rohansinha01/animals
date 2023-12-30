@@ -1,0 +1,15 @@
+body {
+    background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20201016/pngtree-forest-cartoon-fox-monkey-leaves-animal-background-image_419245.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    text-align: center;
+}
+
+.animals {
+    border: 1px solid brown
+}
+
+.single {
+    border: 1px solid gold;
+    line-height: 2em;
+}
