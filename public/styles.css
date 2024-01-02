@@ -6,10 +6,23 @@ body {
 }
 
 .animals {
-    border: 1px solid brown
+    border: 1px solid brown;
+    margin: 0px 500px 0px 500px;
 }
 
 .single {
     border: 1px solid gold;
     line-height: 2em;
+    margin: 20px;
+    background-color: lightcyan;
+    
+}
+
+.buttons {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-around;
+    
 }
