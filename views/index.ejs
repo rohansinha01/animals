@@ -4,20 +4,20 @@
 <body>
     <%- include("./partials/nav.ejs") %>
     <h1>Check out these Animals!</h1>
-    <p>click animal to see more</p>
-    <div class="animals">
+    <p>Click on animal to see more!</p>
+    <div class="flexbox">
     <% for (let a = 0; a < animals.length; ++a) { %>
-        <div class="single">
+        <div id="single">
             <a href="/animals/<%= animals[a]._id %>">
                 <%= animals[a].species %>
             </a>
             <div class="buttons">
             <form action="/animals/<%= animals[a]._id%>/?_method=DELETE" method="post">
-                <input type="submit" value="Remove Animal">
+                <input class="remove"type="submit" value="Remove Animal">
             </form>
             <a href="/animals/edit/<%= animals[a]._id %>/">
                 <input type="submit" value="Edit Animal"></a>
         </div></div>
-   <% } %></div>
+   <% } %></div></div>
 </body>
 </html>

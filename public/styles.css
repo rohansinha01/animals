@@ -6,23 +6,56 @@ body {
 }
 
 .animals {
-    border: 1px solid brown;
     margin: 0px 500px 0px 500px;
+    display: flex;
+    align-items: center;
 }
 
-.single {
-    border: 1px solid gold;
+#single {
     line-height: 2em;
     margin: 20px;
     background-color: lightcyan;
+    border: 2px solid black;
+    height: 100px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    
     
 }
 
 .buttons {
-    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 500px 0px 500px;
+    background-color: lightcyan;
+    align-content: flex-end;
+    
+}
+
+.extinct {
     display: flex;
     flex-direction: row;
-    align-content: center;
+}
+
+.new {
+    display: flex;
     justify-content: space-around;
-    
+}
+
+.flexbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
